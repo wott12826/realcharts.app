@@ -1,0 +1,88 @@
+Uri: https://realcharts.app/
+File Name: C:\Downloaded Web Sites\realcharts.app\index.htm
+Content Type: text/html
+
+Uri: https://realcharts.app/about
+File Name: C:\Downloaded Web Sites\realcharts.app\about.html
+Content Type: text/html
+
+Uri: https://realcharts.app/favicon.ico
+File Name: C:\Downloaded Web Sites\realcharts.app\favicon.ico
+Content Type: 
+
+Uri: https://realcharts.app/imgs/google.svg
+File Name: C:\Downloaded Web Sites\realcharts.app\imgs\google.svg
+Content Type: image/svg+xml
+
+Uri: https://realcharts.app/imgs/lp1_2.png
+File Name: C:\Downloaded Web Sites\realcharts.app\imgs\lp1_2.png
+Content Type: image/png
+
+Uri: https://realcharts.app/imgs/lp2_2.png
+File Name: C:\Downloaded Web Sites\realcharts.app\imgs\lp2_2.png
+Content Type: image/png
+
+Uri: https://realcharts.app/imgs/lp3_2.png
+File Name: C:\Downloaded Web Sites\realcharts.app\imgs\lp3_2.png
+Content Type: image/png
+
+Uri: https://realcharts.app/imgs/lp4_2.png
+File Name: C:\Downloaded Web Sites\realcharts.app\imgs\lp4_2.png
+Content Type: image/png
+
+Uri: https://realcharts.app/imgs/l_block_1.jpg
+File Name: C:\Downloaded Web Sites\realcharts.app\imgs\l_block_1.jpg
+Content Type: image/jpeg
+
+Uri: https://realcharts.app/imgs/l_block_2.jpg
+File Name: C:\Downloaded Web Sites\realcharts.app\imgs\l_block_2.jpg
+Content Type: image/jpeg
+
+Uri: https://realcharts.app/imgs/l_block_3.jpg
+File Name: C:\Downloaded Web Sites\realcharts.app\imgs\l_block_3.jpg
+Content Type: image/jpeg
+
+Uri: https://realcharts.app/imgs/x-2.svg
+File Name: C:\Downloaded Web Sites\realcharts.app\imgs\x-2.svg
+Content Type: image/svg+xml
+
+Uri: https://realcharts.app/legal
+File Name: C:\Downloaded Web Sites\realcharts.app\legal.html
+Content Type: text/html
+
+Uri: https://realcharts.app/logo.jpg
+File Name: C:\Downloaded Web Sites\realcharts.app\logo.jpg
+Content Type: image/jpeg
+
+Uri: https://realcharts.app/manifest.json
+File Name: C:\Downloaded Web Sites\realcharts.app\manifest.json
+Content Type: application/json
+
+Uri: https://realcharts.app/portfolio
+File Name: C:\Downloaded Web Sites\realcharts.app\portfolio.html
+Content Type: text/html
+
+Uri: https://realcharts.app/premium
+File Name: C:\Downloaded Web Sites\realcharts.app\premium.html
+Content Type: text/html
+
+Uri: https://realcharts.app/profile
+File Name: C:\Downloaded Web Sites\realcharts.app\profile.html
+Content Type: text/html
+
+Uri: https://realcharts.app/_app/immutable/assets/app.Bo0Z64Zs.css
+File Name: C:\Downloaded Web Sites\realcharts.app\_app\immutable\assets\app.Bo0Z64Zs.css
+Content Type: text/css
+
+Uri: https://realcharts.app/_app/immutable/assets/portfolio.B1hi4t7G.css
+File Name: C:\Downloaded Web Sites\realcharts.app\_app\immutable\assets\portfolio.B1hi4t7G.css
+Content Type: text/css
+
+Uri: https://realcharts.app/_app/immutable/assets/top_stocks.bHHIbcsu.css
+File Name: C:\Downloaded Web Sites\realcharts.app\_app\immutable\assets\top_stocks.bHHIbcsu.css
+Content Type: text/css
+
+Uri: https://www.googletagmanager.com/gtag/js?id=G-7D05MG2Q9H
+File Name: C:\Downloaded Web Sites\realcharts.app\gtag\js
+Content Type: application/javascript
+
