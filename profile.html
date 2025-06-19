@@ -185,7 +185,7 @@
                         data-accordion-trigger=""
                         tabindex="0"
                       >
-                        <!---->Do I even need Real Charts? What’s the benefit?<!---->
+                        <!---->Do I even need Real Charts? What's the benefit?<!---->
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="24"
@@ -297,7 +297,7 @@
                         <!---->Prices below the green zone indicate a
                         potentially fair price for the asset, meaning a price
                         range where the asset does not appear overvalued. Green
-                        signals demonstrate the algorithm’s confidence. Free for
+                        signals demonstrate the algorithm's confidence. Free for
                         thousands of assets: crypto, stocks.
                         <!--[!--><!--]--><!---->
                       </div>
@@ -400,7 +400,7 @@
                 <div
                   class="flex flex-row items-center gap-2 font-semibold text-xl mb-2"
                 >
-                  Profile
+                  Wallet
                 </div>
                 <div
                   class="flex flex-col items-center justify-center gap-2 w-full"
@@ -412,26 +412,17 @@
                     <div
                       class="text-xl opacity-100 font-bold flex flex-col items-center justify-center"
                     >
-                      Login / Sign Up
+                      Connect Wallet
                     </div>
                     <!--[!--><button
-                      class="focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 shadow h-9 px-4 py-2 bg-white font-bold text-black mt-5 hover:bg-white hover:text-black"
+                      class="focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 shadow h-9 px-4 py-2 bg-white font-bold text-black mt-5 hover:bg-white hover:text-black"
                       type="button"
+                      id="phantom-connect-btn"
                     >
-                      <img src="imgs/google.svg" class="w-5 h-5 mr-2" />
-                      Google<!----></button
-                    ><!--]--><!---->
-                    <p class="text-xs mt-10 text-white/40">
-                      Use only if you agree with our<br /><a
-                        href="legal.html"
-                        class="text-white/70"
-                        >Terms of Service</a
-                      >
-                      and
-                      <a href="legal.html" class="text-white/70"
-                        >Privacy Policy</a
-                      >
-                    </p>
+                      <img src="imgs/phantom_wallet_logo.svg" class="w-5 h-5 mr-2" />
+                      Phantom
+                    </button>
+                    <div id="wallet-info" class="mt-4 text-center text-white text-sm"></div>
                   </div>
                   <!--]-->
                 </div>
@@ -577,6 +568,26 @@
             });
           });
         }
+      </script>
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          const btn = document.getElementById('phantom-connect-btn');
+          const info = document.getElementById('wallet-info');
+          if (btn) {
+            btn.addEventListener('click', async function() {
+              if (window.solana && window.solana.isPhantom) {
+                try {
+                  const resp = await window.solana.connect();
+                  info.textContent = 'Wallet: ' + resp.publicKey.toString();
+                } catch (err) {
+                  info.textContent = 'Connection cancelled or failed.';
+                }
+              } else {
+                info.innerHTML = 'Phantom Wallet not found. <a href="https://phantom.app/" target="_blank" class="underline text-blue-400">Install Phantom</a>';
+              }
+            });
+          }
+        });
       </script>
     </div>
   </body>
