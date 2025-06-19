@@ -537,6 +537,46 @@
           }
         });
       </script>
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          // Находим все accordion триггеры
+          const accordionTriggers = document.querySelectorAll('[data-accordion-trigger]');
+          accordionTriggers.forEach(trigger => {
+            trigger.addEventListener('click', function() {
+              const item = this.closest('[data-accordion-item]');
+              const content = item.querySelector('[data-accordion-content]');
+              const isOpen = item.getAttribute('data-state') === 'open';
+              // Закрываем все остальные
+              document.querySelectorAll('[data-accordion-item]').forEach(otherItem => {
+                if (otherItem !== item) {
+                  otherItem.setAttribute('data-state', 'closed');
+                  const otherContent = otherItem.querySelector('[data-accordion-content]');
+                  const otherTrigger = otherItem.querySelector('[data-accordion-trigger]');
+                  if (otherContent) {
+                    otherContent.hidden = true;
+                    otherContent.style.setProperty('--bits-accordion-content-height', '0px');
+                  }
+                  if (otherTrigger) {
+                    otherTrigger.setAttribute('aria-expanded', 'false');
+                  }
+                }
+              });
+              // Переключаем текущий
+              if (isOpen) {
+                item.setAttribute('data-state', 'closed');
+                content.hidden = true;
+                content.style.setProperty('--bits-accordion-content-height', '0px');
+                this.setAttribute('aria-expanded', 'false');
+              } else {
+                item.setAttribute('data-state', 'open');
+                content.hidden = false;
+                content.style.setProperty('--bits-accordion-content-height', content.scrollHeight + 'px');
+                this.setAttribute('aria-expanded', 'true');
+              }
+            });
+          });
+        });
+      </script>
     </div>
   </body>
 </html>
