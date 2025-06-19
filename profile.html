@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <link rel="manifest" href="manifest.json" />
-    <link rel="icon" href="favicon.ico" />
+    <link rel="icon" href="imgs/photo_2025-06-19_14-13-56.jpg" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, maximum-scale=1"
@@ -573,12 +573,23 @@
         document.addEventListener('DOMContentLoaded', function() {
           const btn = document.getElementById('phantom-connect-btn');
           const info = document.getElementById('wallet-info');
+          const connectBlock = btn ? btn.closest('.flex.flex-col.items-center.justify-center.gap-0.py-10.px-5.pb-10.text-center.w-full.border-2.border-muted.rounded-2xl') : null;
+          function showWalletInfo(address) {
+            info.innerHTML = `
+              <div class="flex flex-col items-center justify-center gap-2">
+                <img src='imgs/phantom_wallet_logo.svg' class='w-12 h-12 mb-2 rounded-full border-2 border-purple-400 bg-white' alt='Phantom'/>
+                <div class='font-bold text-lg'>Phantom User</div>
+                <div class='text-xs text-gray-300 mt-1'>${address}</div>
+              </div>
+            `;
+          }
           if (btn) {
             btn.addEventListener('click', async function() {
               if (window.solana && window.solana.isPhantom) {
                 try {
                   const resp = await window.solana.connect();
-                  info.textContent = 'Wallet: ' + resp.publicKey.toString();
+                  if (connectBlock) connectBlock.style.display = 'none';
+                  showWalletInfo(resp.publicKey.toString());
                 } catch (err) {
                   info.textContent = 'Connection cancelled or failed.';
                 }
