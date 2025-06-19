@@ -39,12 +39,52 @@
 		50% {background-position:100% 50%}
 		100% {background-position:0% 50%}
 	}
+	.background-glow {
+		position: fixed;
+		inset: 0;
+		z-index: -10;
+		background: #181a20;
+		overflow: hidden;
+	}
+	.background-glow .glow {
+		position: absolute;
+		border-radius: 50%;
+		filter: blur(80px);
+		opacity: 0.7;
+		pointer-events: none;
+	}
+	.background-glow .glow1 {
+		width: 600px;
+		height: 400px;
+		left: -100px;
+		bottom: -100px;
+		background: #00bfff;
+	}
+	.background-glow .glow2 {
+		width: 400px;
+		height: 300px;
+		right: 0;
+		top: 100px;
+		background: #0051ff;
+		opacity: 0.5;
+	}
+	.background-glow .glow3 {
+		width: 300px;
+		height: 200px;
+		left: 50%;
+		top: 60%;
+		background: #00fff7;
+		opacity: 0.3;
+		transform: translateX(-50%);
+	}
 	</style>
 </head>
 
 <body data-sveltekit-preload-data="hover" class="dark">
-	<div class="fixed inset-0 -z-10" style="background: #212529;">
-		<!-- <img src="imgs/BackAva.png" class="w-full h-full object-cover" style="filter: blur(7px) brightness(0.35);" alt="" /> -->
+	<div class="background-glow">
+		<div class="glow glow1"></div>
+		<div class="glow glow2"></div>
+		<div class="glow glow3"></div>
 	</div>
 	<div style="display: contents"><!--[--><!--[--><!---->
 		<div class="p-4 pb-32 ml-auto mr-auto">
