@@ -68,20 +68,17 @@
 					</svg>
 				</button>
 				
-				<!-- Overlay -->
-				<div id="mobile-menu-overlay" class="hidden fixed inset-0 bg-black/60 z-[2147483646] transition-opacity duration-300"></div>
-				
-				<!-- Sidebar Menu -->
-				<aside id="mobile-menu"
-					 class="hidden fixed top-0 right-0 h-full w-4/5 max-w-xs bg-zinc-900 z-[2147483647] flex flex-col p-8 gap-8 shadow-2xl translate-x-full transition-transform duration-300">
-					<button id="close-menu-btn" class="absolute top-4 right-4 text-white text-3xl">&times;</button>
-					<nav class="flex flex-col gap-6 mt-12">
-						<a href="index.htm" class="text-white text-xl no-underline hover:text-yellow-300 transition-colors">Home</a>
-						<a href="stacking.html" class="text-white text-xl no-underline hover:text-yellow-300 transition-colors">Stacking</a>
-						<a href="lock.html" class="text-white text-xl no-underline hover:text-yellow-300 transition-colors">Lock</a>
-						<a href="burn.html" class="text-white text-xl no-underline hover:text-yellow-300 transition-colors">Burn</a>
+				<!-- Fullscreen Mobile Menu с анимацией -->
+				<div id="mobile-menu"
+					 class="hidden fixed inset-0 bg-zinc-900 z-[2147483647] flex flex-col items-center justify-center transition-all duration-300 opacity-0 scale-95">
+					<button id="close-menu-btn" class="absolute top-6 right-6 text-white text-4xl">&times;</button>
+					<nav class="flex flex-col items-center gap-8">
+						<a href="index.htm" class="text-white text-2xl no-underline hover:text-yellow-300 transition-colors">Home</a>
+						<a href="stacking.html" class="text-white text-2xl no-underline hover:text-yellow-300 transition-colors">Stacking</a>
+						<a href="lock.html" class="text-white text-2xl no-underline hover:text-yellow-300 transition-colors">Lock</a>
+						<a href="burn.html" class="text-white text-2xl no-underline hover:text-yellow-300 transition-colors">Burn</a>
 					</nav>
-				</aside>
+				</div>
 				
 				<div class="hidden md:flex flex-row items-center gap-3"><!--[--><a href="profile.html"><svg
 							xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewbox="0 0 24 24" fill="none"
@@ -473,32 +470,29 @@
 				const menuBtn = document.getElementById('mobile-menu-btn');
 				const menu = document.getElementById('mobile-menu');
 				const closeBtn = document.getElementById('close-menu-btn');
-				const overlay = document.getElementById('mobile-menu-overlay');
 
 				function openMenu() {
 					menu.classList.remove('hidden');
-					overlay.classList.remove('hidden');
 					menuBtn.classList.add('hidden');
-					setTimeout(() => {
-						menu.classList.remove('translate-x-full');
-						overlay.classList.add('opacity-100');
-						document.body.style.overflow = 'hidden';
-					}, 10);
+					// Триггерим анимацию через следующий кадр
+					requestAnimationFrame(() => {
+						menu.classList.remove('opacity-0', 'scale-95');
+						menu.classList.add('opacity-100', 'scale-100');
+					});
+					document.body.style.overflow = 'hidden';
 				}
 				function closeMenu() {
-					menu.classList.add('translate-x-full');
-					overlay.classList.remove('opacity-100');
+					menu.classList.remove('opacity-100', 'scale-100');
+					menu.classList.add('opacity-0', 'scale-95');
 					setTimeout(() => {
 						menu.classList.add('hidden');
-						overlay.classList.add('hidden');
 						menuBtn.classList.remove('hidden');
 						document.body.style.overflow = '';
-					}, 300);
+					}, 300); // duration-300
 				}
 
 				menuBtn.addEventListener('click', openMenu);
 				closeBtn.addEventListener('click', closeMenu);
-				overlay.addEventListener('click', closeMenu);
 				menu.querySelectorAll('a').forEach(link => {
 					link.addEventListener('click', closeMenu);
 				});
