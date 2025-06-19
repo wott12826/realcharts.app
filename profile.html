@@ -577,16 +577,26 @@
           const info = document.getElementById('wallet-info');
           const title = document.getElementById('wallet-connect-title');
 
-          async function fetchSolanaProfile(pubkey) {
-            const url = `https://api.profiles.cardinal.so/v1/address/${pubkey}`;
+          async function getSolanaName(walletAddress) {
+            const url = `https://sns-api.bonfida.com/reverse/${walletAddress}`;
             try {
               const res = await fetch(url);
               if (!res.ok) return null;
               const data = await res.json();
-              return {
-                name: data.displayName || null,
-                avatar: data.avatarUrl || null
-              };
+              return data.domain || null;
+            } catch {
+              return null;
+            }
+          }
+
+          async function getHeliusProfile(walletAddress) {
+            const url = `https://api.helius.xyz/v0/addresses/${walletAddress}/names?api-key=b3157c76-c2ae-47a3-bb24-1181b54d4c62`;
+            try {
+              const res = await fetch(url);
+              if (!res.ok) return null;
+              const data = await res.json();
+              // data[0]?.avatarUrl — если есть
+              return data[0] || null;
             } catch {
               return null;
             }
@@ -600,13 +610,16 @@
                   btn.style.display = 'none';
                   if (title) title.style.display = 'none';
                   info.innerHTML = '<div class="text-gray-400">Loading profile...</div>';
-                  const profile = await fetchSolanaProfile(resp.publicKey.toString());
-                  const name = (profile && profile.name) ? profile.name : 'Phantom User';
-                  const avatar = (profile && profile.avatar) ? profile.avatar : 'imgs/phantom_wallet_logo.svg';
+                  // Получаем имя и аватар
+                  const [name, heliusProfile] = await Promise.all([
+                    getSolanaName(resp.publicKey.toString()),
+                    getHeliusProfile(resp.publicKey.toString())
+                  ]);
+                  const avatar = heliusProfile && heliusProfile.avatarUrl ? heliusProfile.avatarUrl : 'imgs/phantom_wallet_logo.svg';
                   info.innerHTML = `
                     <div class="flex flex-col items-center justify-center gap-2">
                       <img src='${avatar}' class='w-12 h-12 mb-2 rounded-full border-2 border-purple-400 bg-white' alt='Avatar'/>
-                      <div class='font-bold text-lg'>${name}</div>
+                      <div class='font-bold text-lg'>${name || 'Phantom User'}</div>
                       <div class='text-xs text-gray-300 mt-1'>${resp.publicKey.toString()}</div>
                     </div>
                   `;
