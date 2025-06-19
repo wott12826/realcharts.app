@@ -68,11 +68,15 @@
 					</svg>
 				</button>
 				
-				<!-- Fullscreen Mobile Menu с анимацией -->
+				<!-- Fullscreen Mobile Menu с анимацией и фиксированной кнопкой закрытия -->
 				<div id="mobile-menu"
-					 class="hidden fixed inset-0 bg-zinc-900 z-[2147483647] flex flex-col items-center justify-center transition-all duration-300 opacity-0 scale-95"
-					 style="background: #18181b;"">
-					<button id="close-menu-btn" class="absolute top-6 right-6 text-white text-4xl">&times;</button>
+					 class="hidden fixed inset-0 bg-black z-[2147483647] flex flex-col items-center justify-center transition-all duration-300 opacity-0 scale-95">
+					<button id="close-menu-btn" class="fixed top-4 right-4 z-[10001] bg-black/60 rounded-lg p-2">
+						<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<line x1="6" y1="6" x2="26" y2="26"></line>
+							<line x1="26" y1="6" x2="6" y2="26"></line>
+						</svg>
+					</button>
 					<nav class="flex flex-col items-center gap-8">
 						<a href="index.htm" class="text-white text-2xl no-underline hover:text-yellow-300 transition-colors">Home</a>
 						<a href="stacking.html" class="text-white text-2xl no-underline hover:text-yellow-300 transition-colors">Stacking</a>
