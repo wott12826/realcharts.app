@@ -408,13 +408,15 @@
                   <!--[!-->
                   <div
                     class="flex flex-col items-center justify-center gap-0 py-10 px-5 pb-10 text-center w-full border-2 border-muted rounded-2xl"
+                    id="wallet-connect-block"
                   >
                     <div
                       class="text-xl opacity-100 font-bold flex flex-col items-center justify-center"
+                      id="wallet-connect-title"
                     >
                       Connect Wallet
                     </div>
-                    <!--[!--><button
+                    <button
                       class="focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 shadow h-9 px-4 py-2 bg-white font-bold text-black mt-5 hover:bg-white hover:text-black"
                       type="button"
                       id="phantom-connect-btn"
@@ -573,23 +575,21 @@
         document.addEventListener('DOMContentLoaded', function() {
           const btn = document.getElementById('phantom-connect-btn');
           const info = document.getElementById('wallet-info');
-          const connectBlock = btn ? btn.closest('.flex.flex-col.items-center.justify-center.gap-0.py-10.px-5.pb-10.text-center.w-full.border-2.border-muted.rounded-2xl') : null;
-          function showWalletInfo(address) {
-            info.innerHTML = `
-              <div class="flex flex-col items-center justify-center gap-2">
-                <img src='imgs/phantom_wallet_logo.svg' class='w-12 h-12 mb-2 rounded-full border-2 border-purple-400 bg-white' alt='Phantom'/>
-                <div class='font-bold text-lg'>Phantom User</div>
-                <div class='text-xs text-gray-300 mt-1'>${address}</div>
-              </div>
-            `;
-          }
+          const title = document.getElementById('wallet-connect-title');
           if (btn) {
             btn.addEventListener('click', async function() {
               if (window.solana && window.solana.isPhantom) {
                 try {
                   const resp = await window.solana.connect();
-                  if (connectBlock) connectBlock.style.display = 'none';
-                  showWalletInfo(resp.publicKey.toString());
+                  btn.style.display = 'none';
+                  if (title) title.style.display = 'none';
+                  info.innerHTML = `
+                    <div class="flex flex-col items-center justify-center gap-2">
+                      <img src='imgs/phantom_wallet_logo.svg' class='w-12 h-12 mb-2 rounded-full border-2 border-purple-400 bg-white' alt='Phantom'/>
+                      <div class='font-bold text-lg'>Phantom User</div>
+                      <div class='text-xs text-gray-300 mt-1'>${resp.publicKey.toString()}</div>
+                    </div>
+                  `;
                 } catch (err) {
                   info.textContent = 'Connection cancelled or failed.';
                 }
