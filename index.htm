@@ -1,4 +1,4 @@
-﻿﻿<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 
 <head>
@@ -489,6 +489,50 @@
 				closeBtn.addEventListener('click', closeMenu);
 				menu.querySelectorAll('a').forEach(link => {
 					link.addEventListener('click', closeMenu);
+				});
+			});
+		</script>
+
+		<!-- Accordion JavaScript -->
+		<script>
+			document.addEventListener('DOMContentLoaded', function () {
+				// Находим все accordion триггеры
+				const accordionTriggers = document.querySelectorAll('[data-accordion-trigger]');
+				
+				accordionTriggers.forEach(trigger => {
+					trigger.addEventListener('click', function() {
+						const item = this.closest('[data-accordion-item]');
+						const content = item.querySelector('[data-accordion-content]');
+						const isOpen = item.getAttribute('data-state') === 'open';
+						
+						// Закрываем все остальные accordion элементы
+						document.querySelectorAll('[data-accordion-item]').forEach(otherItem => {
+							if (otherItem !== item) {
+								otherItem.setAttribute('data-state', 'closed');
+								const otherContent = otherItem.querySelector('[data-accordion-content]');
+								const otherTrigger = otherItem.querySelector('[data-accordion-trigger]');
+								
+								otherContent.hidden = true;
+								otherContent.style.setProperty('--bits-accordion-content-height', '0px');
+								otherTrigger.setAttribute('aria-expanded', 'false');
+							}
+						});
+						
+						// Переключаем текущий элемент
+						if (isOpen) {
+							// Закрываем
+							item.setAttribute('data-state', 'closed');
+							content.hidden = true;
+							content.style.setProperty('--bits-accordion-content-height', '0px');
+							this.setAttribute('aria-expanded', 'false');
+						} else {
+							// Открываем
+							item.setAttribute('data-state', 'open');
+							content.hidden = false;
+							content.style.setProperty('--bits-accordion-content-height', content.scrollHeight + 'px');
+							this.setAttribute('aria-expanded', 'true');
+						}
+					});
 				});
 			});
 		</script>
