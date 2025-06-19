@@ -34,49 +34,62 @@
 	<!--]-->
 	<title>QS | Really Useful for Financial Markets</title>
 	<style>
-	@keyframes gradientFlow {
-		0% {background-position:0% 50%}
-		50% {background-position:100% 50%}
-		100% {background-position:0% 50%}
-	}
-	.background-glow {
-		position: fixed;
-		inset: 0;
-		z-index: -10;
-		background: #181a20;
-		overflow: hidden;
-	}
-	.background-glow .glow {
-		position: absolute;
-		border-radius: 50%;
-		filter: blur(80px);
-		opacity: 0.7;
-		pointer-events: none;
-	}
-	.background-glow .glow1 {
-		width: 600px;
-		height: 400px;
-		left: -100px;
-		bottom: -100px;
-		background: #00bfff;
-	}
-	.background-glow .glow2 {
-		width: 400px;
-		height: 300px;
-		right: 0;
-		top: 100px;
-		background: #0051ff;
-		opacity: 0.5;
-	}
-	.background-glow .glow3 {
-		width: 300px;
-		height: 200px;
-		left: 50%;
-		top: 60%;
-		background: #00fff7;
-		opacity: 0.3;
-		transform: translateX(-50%);
-	}
+		@keyframes gradientFlow {
+			0% {
+				background-position: 0% 50%
+			}
+
+			50% {
+				background-position: 100% 50%
+			}
+
+			100% {
+				background-position: 0% 50%
+			}
+		}
+
+		.background-glow {
+			position: fixed;
+			inset: 0;
+			z-index: -10;
+			background: #181a20;
+			overflow: hidden;
+		}
+
+		.background-glow .glow {
+			position: absolute;
+			border-radius: 50%;
+			filter: blur(80px);
+			opacity: 0.7;
+			pointer-events: none;
+		}
+
+		.background-glow .glow1 {
+			width: 600px;
+			height: 400px;
+			left: -100px;
+			bottom: -100px;
+			background: #00bfff;
+		}
+
+		.background-glow .glow2 {
+			width: 400px;
+			height: 300px;
+			right: 0;
+			top: 100px;
+			background: #0051ff;
+			opacity: 0.5;
+		}
+
+		.background-glow .glow3 {
+			width: 300px;
+			height: 200px;
+			left: 50%;
+			top: 60%;
+			background: #00fff7;
+			opacity: 0.3;
+			transform: translateX(-50%);
+		}
 	</style>
 </head>
 
@@ -92,7 +105,8 @@
 			<div
 				class="flex flex-row justify-center md:justify-between py-1 px-0 relative z-10 w-full mb-2 max-w-[930px] w-full ml-auto mr-auto">
 				<div class="flex flex-row items-center gap-2"><a href="index.htm"
-						class="flex flex-row items-center gap-2 font-medium"><img src="imgs/photo_2025-06-19_14-13-56.jpg" alt="Real Charts Logo"
+						class="flex flex-row items-center gap-2 font-medium"><img
+							src="imgs/photo_2025-06-19_14-13-56.jpg" alt="Real Charts Logo"
 							class="w-6 h-6 rounded-full">
 						<div class="font-bold text-yellow-300 text-lg">QS</div>
 					</a>
@@ -104,37 +118,43 @@
 							class="flex flex-row items-center gap-2 text-white/30 hover:text-white">Stacking</a> <a
 							href="lock.html"
 							class="flex flex-row items-center gap-2 text-white/30 hover:text-white">Lock</a>
-							<a
-							href="burn.html"
-							class="flex flex-row items-center gap-2 text-white/30 hover:text-white">Burn</a></div>
+						<a href="burn.html"
+							class="flex flex-row items-center gap-2 text-white/30 hover:text-white">Burn</a>
+					</div>
 				</div>
-				
+
 				<!-- Mobile Navigation Button (бургер) -->
 				<button id="mobile-menu-btn" class="md:hidden fixed top-4 right-4 z-[10001] bg-black/60 rounded-lg p-2">
-					<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+					<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" stroke="currentColor"
+						stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
 						<line x1="3" y1="8" x2="29" y2="8"></line>
 						<line x1="3" y1="16" x2="29" y2="16"></line>
 						<line x1="3" y1="24" x2="29" y2="24"></line>
 					</svg>
 				</button>
-				
+
 				<!-- Fullscreen Mobile Menu с анимацией и фиксированной кнопкой закрытия -->
 				<div id="mobile-menu"
-					 class="hidden fixed inset-0 bg-black z-[2147483647] flex flex-col items-center justify-center transition-all duration-300 opacity-0 scale-95">
+					class="hidden fixed inset-0 bg-black z-[2147483647] flex flex-col items-center justify-center transition-all duration-300 opacity-0 scale-95">
 					<button id="close-menu-btn" class="fixed top-4 right-4 z-[10001] bg-black/60 rounded-lg p-2">
-						<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+						<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" stroke="currentColor"
+							stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
 							<line x1="6" y1="6" x2="26" y2="26"></line>
 							<line x1="26" y1="6" x2="6" y2="26"></line>
 						</svg>
 					</button>
 					<nav class="flex flex-col items-center gap-8">
-						<a href="index.htm" class="text-white text-2xl no-underline hover:text-yellow-300 transition-colors">Home</a>
-						<a href="stacking.html" class="text-white text-2xl no-underline hover:text-yellow-300 transition-colors">Stacking</a>
-						<a href="lock.html" class="text-white text-2xl no-underline hover:text-yellow-300 transition-colors">Lock</a>
-						<a href="burn.html" class="text-white text-2xl no-underline hover:text-yellow-300 transition-colors">Burn</a>
+						<a href="index.htm"
+							class="text-white text-2xl no-underline hover:text-yellow-300 transition-colors">Home</a>
+						<a href="stacking.html"
+							class="text-white text-2xl no-underline hover:text-yellow-300 transition-colors">Stacking</a>
+						<a href="lock.html"
+							class="text-white text-2xl no-underline hover:text-yellow-300 transition-colors">Lock</a>
+						<a href="burn.html"
+							class="text-white text-2xl no-underline hover:text-yellow-300 transition-colors">Burn</a>
 					</nav>
 				</div>
-				
+
 				<div class="hidden md:flex flex-row items-center gap-3"><!--[--><a href="profile.html"><svg
 							xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewbox="0 0 24 24" fill="none"
 							stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -174,12 +194,11 @@
 			</div>
 			<div class="max-w-[100%] w-[800px] mx-auto relative z-10"><!---->
 				<div class="text-card-foreground rounded-xl border shadow backdrop-blur-sm"
-					 style="background: rgba(39,39,42,0.85);">
+					style="background: rgba(39,39,42,0.85);">
 					<div class="p-6 py-1 px-6">
 						<div
 							class="text-xl md:text-3xl text-center md:text-left font-regular mb-10 font-semibold opacity-100 border-b py-4 pb-5 md:pb-7 border-b">
-							 <span
-								class="text-green-500 font-bold opacity-100">ABOUT QS</span><br>
+							<span class="text-green-500 font-bold opacity-100">ABOUT QS</span><br>
 						</div>
 						<div class="flex flex-row flex-wrap md:flex-nowrap gap-4 border-b pb-11 mb-11">
 							<div
@@ -187,8 +206,11 @@
 								<div class="pt-[2%] md:pt-[10%]">
 									<div
 										class="flex flex-row justify-center md:justify-start items-center md:items-left gap-2 text-2xl md:text-3xl font-semibold mb-2">
-										<span class="text-green-500 opacity-100">A meme token where doing nothing means anything is possible.</span></div>
-									<p class="text-lg md:text-2xl font-light opacity-70 mt-2 md:mt-4">Stake to collapse the wave.<br>
+										<span class="text-green-500 opacity-100">A meme token where doing nothing means
+											anything is possible.</span>
+									</div>
+									<p class="text-lg md:text-2xl font-light opacity-70 mt-2 md:mt-4">Stake to collapse
+										the wave.<br>
 										QS — the catcoin of quantum finance</p <!--[!--><button
 										class="focus-visible:ring-ring items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 shadow h-9 px-4 py-2 hidden md:flex mt-8 bg-white text-black hover:bg-white hover:text-black focus:bg-white focus:text-black font-bold"
 										type="button"><!---->Launch App<!----></button><!--]--><!---->
@@ -203,12 +225,15 @@
 												<div class="p-"><!---->
 													<div class="bg-card text-card-foreground rounded-xl border shadow">
 														<!---->
-														<div class="p-0"><video src="imgs/Professional_Mode_A_glowing_cyberpunk_style_cat_wa.mp4" autoplay loop muted playsinline class="w-full h-full object-cover rounded-xl"></video><!---->
+														<div class="p-0"><video
+																src="imgs/Professional_Mode_A_glowing_cyberpunk_style_cat_wa.mp4"
+																autoplay loop muted playsinline
+																class="w-full h-full object-cover rounded-xl"></video><!---->
 														</div><!----><!---->
 													</div><!---->
 												</div><!---->
 											</div><!----><!---->
-											
+
 										</div>
 									</div><!----> <!----><!--[!-->
 								</div><!---->
@@ -226,12 +251,14 @@
 												<div class="p-"><!---->
 													<div class="bg-card text-card-foreground rounded-xl border shadow">
 														<!---->
-														<div class="p-0"><video src="imgs/DexPFP.mp4" autoplay loop muted playsinline class="w-full h-full object-cover rounded-xl"></video><!---->
+														<div class="p-0"><video src="imgs/DexPFP.mp4" autoplay loop
+																muted playsinline
+																class="w-full h-full object-cover rounded-xl"></video><!---->
 														</div><!----><!---->
 													</div><!---->
 												</div><!---->
 											</div><!----><!---->
-											
+
 										</div>
 									</div><!---->
 								</div><!---->
@@ -250,11 +277,15 @@
 								</div>
 								<div class="h-1 border-t border-muted mb-7 w-[15%] mx-auto"></div>
 								<div>
-									
-									<p class="text-lg md:text-xl font-light opacity-80 mt-2 mb-10 md:mb-0">Stake → see your rewards</p>
-										<p class="text-lg md:text-xl font-light opacity-80 mt-2 mb-10 md:mb-0">Lock → hide from volatility</p>
-											<p class="text-lg md:text-xl font-light opacity-80 mt-2 mb-10 md:mb-0">Burn → no coming back</p>
-												<p class="text-lg md:text-xl font-light opacity-80 mt-2 mb-10 md:mb-0">Chart? You sure you want to look?</p>
+
+									<p class="text-lg md:text-xl font-light opacity-80 mt-2 mb-10 md:mb-0">Stake → see
+										your rewards</p>
+									<p class="text-lg md:text-xl font-light opacity-80 mt-2 mb-10 md:mb-0">Lock → hide
+										from volatility</p>
+									<p class="text-lg md:text-xl font-light opacity-80 mt-2 mb-10 md:mb-0">Burn → no
+										coming back</p>
+									<p class="text-lg md:text-xl font-light opacity-80 mt-2 mb-10 md:mb-0">Chart? You
+										sure you want to look?</p>
 								</div>
 							</div>
 						</div>
@@ -265,8 +296,8 @@
 								type="button"><!---->Launch App<!----></button><!--]--><!---->
 							<div
 								class="md:text-3xl text-center md:text-right font-semibold text-center flex flex-col items-center justify-center text-2xl">
-								 and the most friendly <span
-									class="text-green-500 opacity-100 block">Portfolio</span></div>
+								and the most friendly <span class="text-green-500 opacity-100 block">Portfolio</span>
+							</div>
 						</div><!---->
 					</div><!----><!---->
 				</div><!----> <!---->
@@ -303,13 +334,14 @@
 										class="flex flex-1 items-center justify-between py-4 transition-all hover:underline [&amp;[data-state=open]>svg]:rotate-180 border-none text-md font-bold"
 										id="bits-32609" aria-expanded="false" aria-disabled="false" data-state="closed"
 										data-orientation="vertical" data-accordion-trigger="" tabindex="0"><!---->What
-										is special about QS?<!----> <svg xmlns="http://www.w3.org/2000/svg"
-											width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor"
+										is special about QS?<!----> <svg xmlns="http://www.w3.org/2000/svg" width="24"
+											height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor"
 											stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
 											class="lucide-icon lucide lucide-chevron-down text-muted-foreground size-4 shrink-0 transition-transform duration-200"><!--[--><!---->
 											<path d="m6 9 6 6 6-6"><!----></path>
 											<!----><!--]--><!----><!----><!----><!---->
-										</svg><!----><!----></button><!--]--><!----><!----></div><!--]--><!----><!---->
+										</svg><!----><!----></button><!--]--><!----><!---->
+								</div><!--]--><!----><!---->
 								<!----><!----><!--[--><!--[!-->
 								<div class="data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden text-sm text-gray-400"
 									id="bits-32610" data-state="closed" data-orientation="vertical"
@@ -331,14 +363,14 @@
 										class="flex flex-1 items-center justify-between py-4 transition-all hover:underline [&amp;[data-state=open]>svg]:rotate-180 border-none text-md font-bold"
 										id="bits-32613" aria-expanded="false" aria-disabled="false" data-state="closed"
 										data-orientation="vertical" data-accordion-trigger="" tabindex="0"><!---->What
-										research is available on QS?<!----> <svg
-											xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-											viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-											stroke-linecap="round" stroke-linejoin="round"
+										research is available on QS?<!----> <svg xmlns="http://www.w3.org/2000/svg"
+											width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor"
+											stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
 											class="lucide-icon lucide lucide-chevron-down text-muted-foreground size-4 shrink-0 transition-transform duration-200"><!--[--><!---->
 											<path d="m6 9 6 6 6-6"><!----></path>
 											<!----><!--]--><!----><!----><!----><!---->
-										</svg><!----><!----></button><!--]--><!----><!----></div><!--]--><!----><!---->
+										</svg><!----><!----></button><!--]--><!----><!---->
+								</div><!--]--><!----><!---->
 								<!----><!----><!--[--><!--[!-->
 								<div class="data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden text-sm text-gray-400"
 									id="bits-32614" data-state="closed" data-orientation="vertical"
@@ -366,7 +398,8 @@
 											class="lucide-icon lucide lucide-chevron-down text-muted-foreground size-4 shrink-0 transition-transform duration-200"><!--[--><!---->
 											<path d="m6 9 6 6 6-6"><!----></path>
 											<!----><!--]--><!----><!----><!----><!---->
-										</svg><!----><!----></button><!--]--><!----><!----></div><!--]--><!----><!---->
+										</svg><!----><!----></button><!--]--><!----><!---->
+								</div><!--]--><!----><!---->
 								<!----><!----><!--[--><!--[!-->
 								<div class="data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden text-sm text-gray-400"
 									id="bits-32618" data-state="closed" data-orientation="vertical"
@@ -386,7 +419,16 @@
 				<div class="text-card-foreground rounded-xl border shadow mt-5 backdrop-blur-sm"
 					style="background: rgba(39,39,42,0.85);">
 					<div class="p-6">
-						<div class="flex flex-row items-center justify-center gap-4 font-medium text-lg gap-8"><a title="Telegram" data-testid="SocialIcon" target="_blank" rel="noopener noreferrer" href="https://t.me/QuantumSCH" aria-label="Telegram" class="[&amp;svg]pointer-events-none z-0 p-2 transition-transform hover:scale-[107.5%]"><svg enable-background="new 0 0 24 24" viewBox="0 0 24 24" class="sc-gKsewC fzSGPN"><title data-testid="svgTitle" id="title_0.39583475435384763">Telegram</title><path d="M11 0a11 11 0 1011 11A11.012 11.012 0 0011 0zm0 21a10 10 0 1110-10 10.011 10.011 0 01-10 10zm4.464-15.366a2.405 2.405 0 00-.821.155c-.114.047-2.402.985-3.101 1.29L4.489 9.984c-.827.323-1.284.801-1.342 1.416a1.414 1.414 0 00.677 1.298l.097.06.108.038c.044.015 1.091.373 2.01.649a3.527 3.527 0 001.01.156 2.31 2.31 0 001.203-.296l.07-.047-.001.044a1.617 1.617 0 00.602 1.219c.67.566 2.133 1.523 2.836 1.982.15.099.257.168.296.195a3.755 3.755 0 001.939.752 1.71 1.71 0 00.39-.044 1.859 1.859 0 001.34-1.665l.755-4.736.198-1.295c.193-1.254.304-1.98.327-2.31a1.626 1.626 0 00-.388-1.289 1.534 1.534 0 00-1.152-.477zm.027 5.214l-.759 4.765s-.06.698-.576.82a.707.707 0 01-.162.017 2.892 2.892 0 01-1.356-.564c-.121-.091-2.276-1.457-3.065-2.124a.575.575 0 01.03-.972 115.996 115.996 0 003.187-3.034c.236-.236.472-.676.196-.676a2.37 2.37 0 00-.985.494l-4.279 2.883a1.353 1.353 0 01-.673.144 2.514 2.514 0 01-.723-.114c-.91-.273-1.972-.637-1.972-.637s-.729-.456.515-.941l7.071-2.913c.698-.304 3.065-1.275 3.065-1.275a1.44 1.44 0 01.46-.087c.286 0 .592.128.542.694-.03.425-.273 1.912-.516 3.52z"></path></svg><span class="sr-only">Telegram</span></a> <a href="https://x.com/QuantumSCH"
+						<div class="flex flex-row items-center justify-center gap-4 font-medium text-lg gap-8"><a
+								title="Telegram" data-testid="SocialIcon" target="_blank" rel="noopener noreferrer"
+								href="https://t.me/QuantumSCH" aria-label="Telegram"
+								class="[&amp;svg]pointer-events-none z-0 p-2 transition-transform hover:scale-[107.5%]"><svg
+									enable-background="new 0 0 24 24" viewBox="0 0 24 24" class="w-6 h-6 fill-current text-white hover:text-blue-400 transition-colors">
+									<title data-testid="svgTitle" id="title_0.39583475435384763">Telegram</title>
+									<path
+										d="M11 0a11 11 0 1011 11A11.012 11.012 0 0011 0zm0 21a10 10 0 1110-10 10.011 10.011 0 01-10 10zm4.464-15.366a2.405 2.405 0 00-.821.155c-.114.047-2.402.985-3.101 1.29L4.489 9.984c-.827.323-1.284.801-1.342 1.416a1.414 1.414 0 00.677 1.298l.097.06.108.038c.044.015 1.091.373 2.01.649a3.527 3.527 0 001.01.156 2.31 2.31 0 001.203-.296l.07-.047-.001.044a1.617 1.617 0 00.602 1.219c.67.566 2.133 1.523 2.836 1.982.15.099.257.168.296.195a3.755 3.755 0 001.939.752 1.71 1.71 0 00.39-.044 1.859 1.859 0 001.34-1.665l.755-4.736.198-1.295c.193-1.254.304-1.98.327-2.31a1.626 1.626 0 00-.388-1.289 1.534 1.534 0 00-1.152-.477zm.027 5.214l-.759 4.765s-.06.698-.576.82a.707.707 0 01-.162.017 2.892 2.892 0 01-1.356-.564c-.121-.091-2.276-1.457-3.065-2.124a.575.575 0 01.03-.972 115.996 115.996 0 003.187-3.034c.236-.236.472-.676.196-.676a2.37 2.37 0 00-.985.494l-4.279 2.883a1.353 1.353 0 01-.673.144 2.514 2.514 0 01-.723-.114c-.91-.273-1.972-.637-1.972-.637s-.729-.456.515-.941l7.071-2.913c.698-.304 3.065-1.275 3.065-1.275a1.44 1.44 0 01.46-.087c.286 0 .592.128.542.694-.03.425-.273 1.912-.516 3.52z">
+									</path>
+								</svg><span class="sr-only">Telegram</span></a> <a href="https://x.com/QuantumSCH"
 								target="_blank"><img src="imgs/x-2.svg" class="invert h-5 hover:opacity-70"></a></div>
 						<!---->
 					</div><!----><!---->
@@ -415,10 +457,10 @@
 				});
 			}
 		</script>
-		
+
 		<!-- Mobile Menu JavaScript -->
 		<script>
-			document.addEventListener('DOMContentLoaded', function() {
+			document.addEventListener('DOMContentLoaded', function () {
 				const menuBtn = document.getElementById('mobile-menu-btn');
 				const menu = document.getElementById('mobile-menu');
 				const closeBtn = document.getElementById('close-menu-btn');
