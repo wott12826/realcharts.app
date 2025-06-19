@@ -60,33 +60,28 @@
 				</div>
 				
 				<!-- Mobile Navigation Button -->
-				<div class="md:hidden">
-					<button id="mobile-menu-btn" class="text-white p-2">
-						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-							<line x1="3" y1="6" x2="21" y2="6"></line>
-							<line x1="3" y1="12" x2="21" y2="12"></line>
-							<line x1="3" y1="18" x2="21" y2="18"></line>
-						</svg>
-					</button>
-				</div>
-				
-				<!-- Mobile Navigation Menu -->
-				<div id="mobile-menu" class="hidden md:hidden fixed top-0 left-0 w-full h-full bg-black/95 z-50">
-					<div class="flex flex-col items-center justify-center h-full">
-						<button id="close-menu-btn" class="absolute top-4 right-4 text-white p-2">
-							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-								<line x1="18" y1="6" x2="6" y2="18"></line>
-								<line x1="6" y1="6" x2="18" y2="18"></line>
-							</svg>
-						</button>
-						<div class="flex flex-col items-center gap-6 text-white text-xl">
-							<a href="index.htm" class="hover:text-yellow-300 transition-colors">Home</a>
-							<a href="stacking.html" class="hover:text-yellow-300 transition-colors">Stacking</a>
-							<a href="lock.html" class="hover:text-yellow-300 transition-colors">Lock</a>
-							<a href="burn.html" class="hover:text-yellow-300 transition-colors">Burn</a>
-						</div>
-					</div>
-				</div>
+<div class="md:hidden">
+	<button id="mobile-menu-btn" class="text-white p-2" style="z-index:10001;position:relative;">
+	  <!-- Гамбургер-иконка -->
+	  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+		<line x1="3" y1="8" x2="29" y2="8"></line>
+		<line x1="3" y1="16" x2="29" y2="16"></line>
+		<line x1="3" y1="24" x2="29" y2="24"></line>
+	  </svg>
+	</button>
+  </div>
+  
+  <!-- Mobile Navigation Menu -->
+  <div id="mobile-menu"
+	   style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.95); z-index:10000; flex-direction:column; align-items:center; justify-content:center;">
+	<button id="close-menu-btn" style="position:absolute;top:24px;right:24px;background:none;border:none;color:#fff;font-size:2.5rem;cursor:pointer;">&times;</button>
+	<nav style="display:flex;flex-direction:column;align-items:center;gap:32px;">
+	  <a href="index.htm" style="color:#fff;font-size:2rem;text-decoration:none;">Home</a>
+	  <a href="stacking.html" style="color:#fff;font-size:2rem;text-decoration:none;">Stacking</a>
+	  <a href="lock.html" style="color:#fff;font-size:2rem;text-decoration:none;">Lock</a>
+	  <a href="burn.html" style="color:#fff;font-size:2rem;text-decoration:none;">Burn</a>
+	</nav>
+  </div>
 				
 				<div class="hidden md:flex flex-row items-center gap-3"><!--[--><a href="profile.html"><svg
 							xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewbox="0 0 24 24" fill="none"
@@ -475,40 +470,35 @@
 		<!-- Mobile Menu JavaScript -->
 		<script>
 			document.addEventListener('DOMContentLoaded', function() {
-				const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-				const mobileMenu = document.getElementById('mobile-menu');
-				const closeMenuBtn = document.getElementById('close-menu-btn');
-				
-				// Open mobile menu
-				mobileMenuBtn.addEventListener('click', function() {
-					mobileMenu.classList.remove('hidden');
-					document.body.style.overflow = 'hidden'; // Prevent scrolling
+			  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+			  const mobileMenu = document.getElementById('mobile-menu');
+			  const closeMenuBtn = document.getElementById('close-menu-btn');
+			  // Открыть меню
+			  mobileMenuBtn.addEventListener('click', function() {
+				mobileMenu.style.display = 'flex';
+				document.body.style.overflow = 'hidden';
+			  });
+			  // Закрыть меню
+			  closeMenuBtn.addEventListener('click', function() {
+				mobileMenu.style.display = 'none';
+				document.body.style.overflow = '';
+			  });
+			  // Закрыть по клику на ссылку
+			  mobileMenu.querySelectorAll('a').forEach(link => {
+				link.addEventListener('click', function() {
+				  mobileMenu.style.display = 'none';
+				  document.body.style.overflow = '';
 				});
-				
-				// Close mobile menu
-				closeMenuBtn.addEventListener('click', function() {
-					mobileMenu.classList.add('hidden');
-					document.body.style.overflow = ''; // Restore scrolling
-				});
-				
-				// Close menu when clicking on menu items
-				const menuItems = mobileMenu.querySelectorAll('a');
-				menuItems.forEach(item => {
-					item.addEventListener('click', function() {
-						mobileMenu.classList.add('hidden');
-						document.body.style.overflow = '';
-					});
-				});
-				
-				// Close menu when clicking outside
-				mobileMenu.addEventListener('click', function(e) {
-					if (e.target === mobileMenu) {
-						mobileMenu.classList.add('hidden');
-						document.body.style.overflow = '';
-					}
-				});
+			  });
+			  // Закрыть по клику вне меню (опционально)
+			  mobileMenu.addEventListener('click', function(e) {
+				if (e.target === mobileMenu) {
+				  mobileMenu.style.display = 'none';
+				  document.body.style.overflow = '';
+				}
+			  });
 			});
-		</script>
+		  </script>
 	</div>
 </body>
 
