@@ -59,22 +59,20 @@
 							class="flex flex-row items-center gap-2 text-white/30 hover:text-white">Burn</a></div>
 				</div>
 				
-				<!-- Mobile Navigation Button -->
-				<div class="md:hidden">
-					<button id="mobile-menu-btn" class="text-white p-2 absolute top-4 right-4 z-[10001]">
-						<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-							<line x1="3" y1="8" x2="29" y2="8"></line>
-							<line x1="3" y1="16" x2="29" y2="16"></line>
-							<line x1="3" y1="24" x2="29" y2="24"></line>
-						</svg>
-					</button>
-				</div>
+				<!-- Mobile Navigation Button (бургер) -->
+				<button id="mobile-menu-btn" class="md:hidden fixed top-4 right-4 z-[10001] bg-black/60 rounded-lg p-2">
+					<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+						<line x1="3" y1="8" x2="29" y2="8"></line>
+						<line x1="3" y1="16" x2="29" y2="16"></line>
+						<line x1="3" y1="24" x2="29" y2="24"></line>
+					</svg>
+				</button>
 				
 				<!-- Overlay -->
 				<div id="mobile-menu-overlay" class="hidden fixed inset-0 bg-black/60 z-[2147483646] transition-opacity duration-300"></div>
 				
 				<!-- Sidebar Menu -->
-				<div id="mobile-menu"
+				<aside id="mobile-menu"
 					 class="hidden fixed top-0 right-0 h-full w-4/5 max-w-xs bg-zinc-900 z-[2147483647] flex flex-col p-8 gap-8 shadow-2xl translate-x-full transition-transform duration-300">
 					<button id="close-menu-btn" class="absolute top-4 right-4 text-white text-3xl">&times;</button>
 					<nav class="flex flex-col gap-6 mt-12">
@@ -83,7 +81,7 @@
 						<a href="lock.html" class="text-white text-xl no-underline hover:text-yellow-300 transition-colors">Lock</a>
 						<a href="burn.html" class="text-white text-xl no-underline hover:text-yellow-300 transition-colors">Burn</a>
 					</nav>
-				</div>
+				</aside>
 				
 				<div class="hidden md:flex flex-row items-center gap-3"><!--[--><a href="profile.html"><svg
 							xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewbox="0 0 24 24" fill="none"
@@ -480,6 +478,7 @@
 				function openMenu() {
 					menu.classList.remove('hidden');
 					overlay.classList.remove('hidden');
+					menuBtn.classList.add('hidden');
 					setTimeout(() => {
 						menu.classList.remove('translate-x-full');
 						overlay.classList.add('opacity-100');
@@ -492,6 +491,7 @@
 					setTimeout(() => {
 						menu.classList.add('hidden');
 						overlay.classList.add('hidden');
+						menuBtn.classList.remove('hidden');
 						document.body.style.overflow = '';
 					}, 300);
 				}
