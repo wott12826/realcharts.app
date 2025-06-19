@@ -61,7 +61,7 @@
 				
 				<!-- Mobile Navigation Button -->
 				<div class="md:hidden">
-					<button id="mobile-menu-btn" class="text-white p-2" style="z-index:10001;position:relative;">
+					<button id="mobile-menu-btn" class="text-white p-2 relative z-[10001]">
 						<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
 							<line x1="3" y1="8" x2="29" y2="8"></line>
 							<line x1="3" y1="16" x2="29" y2="16"></line>
@@ -72,13 +72,13 @@
 				
 				<!-- Mobile Navigation Menu -->
 				<div id="mobile-menu"
-					 style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.97); z-index:2147483647; flex-direction:column; align-items:center; justify-content:center;">
-					<button id="close-menu-btn" style="position:absolute;top:24px;right:24px;background:none;border:none;color:#fff;font-size:2.5rem;cursor:pointer;">&times;</button>
-					<nav style="display:flex;flex-direction:column;align-items:center;gap:32px;">
-						<a href="index.htm" style="color:#fff;font-size:2rem;text-decoration:none;">Home</a>
-						<a href="stacking.html" style="color:#fff;font-size:2rem;text-decoration:none;">Stacking</a>
-						<a href="lock.html" style="color:#fff;font-size:2rem;text-decoration:none;">Lock</a>
-						<a href="burn.html" style="color:#fff;font-size:2rem;text-decoration:none;">Burn</a>
+					 class="hidden fixed top-0 left-0 w-screen h-screen bg-black/95 z-[2147483647] flex flex-col items-center justify-center">
+					<button id="close-menu-btn" class="absolute top-6 right-6 text-white text-4xl">&times;</button>
+					<nav class="flex flex-col items-center gap-8">
+						<a href="index.htm" class="text-white text-2xl no-underline hover:text-yellow-300 transition-colors">Home</a>
+						<a href="stacking.html" class="text-white text-2xl no-underline hover:text-yellow-300 transition-colors">Stacking</a>
+						<a href="lock.html" class="text-white text-2xl no-underline hover:text-yellow-300 transition-colors">Lock</a>
+						<a href="burn.html" class="text-white text-2xl no-underline hover:text-yellow-300 transition-colors">Burn</a>
 					</nav>
 				</div>
 				
