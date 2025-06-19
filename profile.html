@@ -577,26 +577,12 @@
           const info = document.getElementById('wallet-info');
           const title = document.getElementById('wallet-connect-title');
 
-          async function getSolanaName(walletAddress) {
-            const url = `https://sns-api.bonfida.com/reverse/${walletAddress}`;
-            try {
-              const res = await fetch(url);
-              if (!res.ok) return null;
-              const data = await res.json();
-              return data.domain || null;
-            } catch {
-              return null;
-            }
-          }
-
           async function getHeliusProfile(walletAddress) {
-            const url = `https://api.helius.xyz/v0/addresses/${walletAddress}/names?api-key=0f701b02-66b2-4199-861a-4e615c98eb8f`;
+            const url = `/api/helius-profile?address=${walletAddress}`;
             try {
               const res = await fetch(url);
               if (!res.ok) return null;
-              const data = await res.json();
-              // data[0]?.avatarUrl — если есть
-              return data[0] || null;
+              return await res.json();
             } catch {
               return null;
             }
@@ -610,16 +596,22 @@
                   btn.style.display = 'none';
                   if (title) title.style.display = 'none';
                   info.innerHTML = '<div class="text-gray-400">Loading profile...</div>';
-                  // Получаем имя и аватар
-                  const [name, heliusProfile] = await Promise.all([
-                    getSolanaName(resp.publicKey.toString()),
-                    getHeliusProfile(resp.publicKey.toString())
-                  ]);
-                  const avatar = heliusProfile && heliusProfile.avatarUrl ? heliusProfile.avatarUrl : 'imgs/phantom_wallet_logo.svg';
+                  // Получаем профиль через backend-прокси
+                  const profile = await getHeliusProfile(resp.publicKey.toString());
+                  const name = profile && (profile.displayName || profile.domain) ? (profile.displayName || profile.domain) : 'Phantom User';
+                  let avatarHtml = '';
+                  if (profile && profile.avatarUrl) {
+                    avatarHtml = `<img src="${profile.avatarUrl}" class="w-12 h-12 mb-2 rounded-full border-2 border-purple-400 bg-white" alt="Avatar"/>`;
+                  } else if (profile && profile.emoji) {
+                    const color = profile.color || '#eee';
+                    avatarHtml = `<div class="w-12 h-12 mb-2 rounded-full flex items-center justify-center text-3xl border-2 border-purple-400" style="background:${color};">${profile.emoji}</div>`;
+                  } else {
+                    avatarHtml = `<img src="imgs/phantom_wallet_logo.svg" class="w-12 h-12 mb-2 rounded-full border-2 border-purple-400 bg-white" alt="Avatar"/>`;
+                  }
                   info.innerHTML = `
                     <div class="flex flex-col items-center justify-center gap-2">
-                      <img src='${avatar}' class='w-12 h-12 mb-2 rounded-full border-2 border-purple-400 bg-white' alt='Avatar'/>
-                      <div class='font-bold text-lg'>${name || 'Phantom User'}</div>
+                      ${avatarHtml}
+                      <div class='font-bold text-lg'>${name}</div>
                       <div class='text-xs text-gray-300 mt-1'>${resp.publicKey.toString()}</div>
                     </div>
                   `;
