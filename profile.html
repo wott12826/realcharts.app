@@ -476,6 +476,37 @@ Directly in Phantom – open your Phantom wallet, tap the "Swap" tab, and search
         }
       </script>
       <script>
+        // Глобальная функция для отключения кошелька
+        function disconnectWallet() {
+          // Очищаем localStorage
+          localStorage.removeItem('phantom-wallet-info');
+          
+          // Сбрасываем отображение
+          const btn = document.getElementById('phantom-connect-btn');
+          const title = document.getElementById('wallet-connect-title');
+          const info = document.getElementById('wallet-info');
+          
+          if (btn) btn.style.display = 'inline-flex';
+          if (title) title.style.display = 'block';
+          if (info) info.innerHTML = '';
+          
+          // Обновляем навигационное меню обратно на "Connect Wallet"
+          const navLinks = document.querySelectorAll('a[href="profile.html"]');
+          navLinks.forEach(link => {
+            const svg = link.querySelector('svg');
+            if (svg) {
+              link.innerHTML = '';
+              link.appendChild(svg);
+              link.appendChild(document.createTextNode('Connect Wallet'));
+            }
+          });
+          
+          // Отключаемся от Phantom
+          if (window.solana && window.solana.disconnect) {
+            window.solana.disconnect();
+          }
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
           const btn = document.getElementById('phantom-connect-btn');
           const info = document.getElementById('wallet-info');
@@ -510,37 +541,6 @@ Directly in Phantom – open your Phantom wallet, tap the "Swap" tab, and search
                 link.appendChild(document.createTextNode(shortenAddress(walletAddress)));
               }
             });
-          }
-
-          // Функция для отключения кошелька
-          function disconnectWallet() {
-            // Очищаем localStorage
-            localStorage.removeItem('phantom-wallet-info');
-            
-            // Сбрасываем отображение
-            const btn = document.getElementById('phantom-connect-btn');
-            const title = document.getElementById('wallet-connect-title');
-            const info = document.getElementById('wallet-info');
-            
-            if (btn) btn.style.display = 'inline-flex';
-            if (title) title.style.display = 'block';
-            if (info) info.innerHTML = '';
-            
-            // Обновляем навигационное меню обратно на "Connect Wallet"
-            const navLinks = document.querySelectorAll('a[href="profile.html"]');
-            navLinks.forEach(link => {
-              const svg = link.querySelector('svg');
-              if (svg) {
-                link.innerHTML = '';
-                link.appendChild(svg);
-                link.appendChild(document.createTextNode('Connect Wallet'));
-              }
-            });
-            
-            // Отключаемся от Phantom
-            if (window.solana && window.solana.disconnect) {
-              window.solana.disconnect();
-            }
           }
 
           async function displayWalletInfo(walletAddress) {
