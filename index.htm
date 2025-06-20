@@ -470,6 +470,38 @@ Lock your tokens to temporarily remove them from circulation and reduce volatili
 				menu.querySelectorAll('a').forEach(link => {
 					link.addEventListener('click', closeMenu);
 				});
+
+				// Функция для сокращения адреса кошелька
+				function shortenAddress(address) {
+					if (!address) return '';
+					return `${address.slice(0, 4)}...${address.slice(-4)}`;
+				}
+
+				// Функция для обновления навигационного меню
+				function updateNavigationMenu(walletAddress) {
+					const navLinks = document.querySelectorAll('a[href="profile.html"]');
+					navLinks.forEach(link => {
+						const svg = link.querySelector('svg');
+						if (svg) {
+							// Очищаем содержимое ссылки и добавляем сокращённый адрес
+							link.innerHTML = '';
+							link.appendChild(svg);
+							link.appendChild(document.createTextNode(shortenAddress(walletAddress)));
+						}
+					});
+				}
+
+				// Проверяем, есть ли сохранённый кошелёк при загрузке страницы
+				const savedWalletInfo = localStorage.getItem('phantom-wallet-info');
+				if (savedWalletInfo) {
+					try {
+						const savedInfo = JSON.parse(savedWalletInfo);
+						updateNavigationMenu(savedInfo.address);
+					} catch (err) {
+						// Если данные повреждены, очищаем их
+						localStorage.removeItem('phantom-wallet-info');
+					}
+				}
 			});
 		</script>
 

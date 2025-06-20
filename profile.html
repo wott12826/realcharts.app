@@ -492,6 +492,26 @@ Directly in Phantom – open your Phantom wallet, tap the "Swap" tab, and search
             }
           }
 
+          // Функция для сокращения адреса кошелька
+          function shortenAddress(address) {
+            if (!address) return '';
+            return `${address.slice(0, 4)}...${address.slice(-4)}`;
+          }
+
+          // Функция для обновления навигационного меню
+          function updateNavigationMenu(walletAddress) {
+            const navLinks = document.querySelectorAll('a[href="profile.html"]');
+            navLinks.forEach(link => {
+              const svg = link.querySelector('svg');
+              if (svg) {
+                // Очищаем содержимое ссылки и добавляем сокращённый адрес
+                link.innerHTML = '';
+                link.appendChild(svg);
+                link.appendChild(document.createTextNode(shortenAddress(walletAddress)));
+              }
+            });
+          }
+
           async function displayWalletInfo(walletAddress) {
             btn.style.display = 'none';
             if (title) title.style.display = 'none';
@@ -519,6 +539,9 @@ Directly in Phantom – open your Phantom wallet, tap the "Swap" tab, and search
             // Сохраняем информацию профиля
             localStorage.setItem('phantom-wallet-info', JSON.stringify(walletInfo));
             
+            // Обновляем навигационное меню
+            updateNavigationMenu(walletAddress);
+            
             info.innerHTML = `
               <div class="flex flex-col items-center justify-center gap-2">
                 ${avatarHtml}
@@ -542,6 +565,10 @@ Directly in Phantom – open your Phantom wallet, tap the "Swap" tab, and search
                   // Сразу отображаем сохранённую информацию
                   btn.style.display = 'none';
                   if (title) title.style.display = 'none';
+                  
+                  // Обновляем навигационное меню
+                  updateNavigationMenu(walletAddress);
+                  
                   info.innerHTML = `
                     <div class="flex flex-col items-center justify-center gap-2">
                       ${savedInfo.avatarHtml}
